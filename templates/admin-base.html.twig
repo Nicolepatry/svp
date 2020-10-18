@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+
+			<link rel="shortcut icon" href="favicon.ico">
+			<link
+			rel="icon" href="back-end/favicon.ico" type="image/x-icon">
+
+			<!-- Data table CSS -->
+			<link
+			href="back-end/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+			<!-- Custom CSS -->
+			<link href="back-end/dist/css/style.css" rel="stylesheet" type="text/css">
+
+			<link href="back-end/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+
+
+			<link href="back-end/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+		{% endblock %}
+	</head>
+	<body>
+
+
+		<nav class="navbar navbar-expand-lg row heading-bg bg-blue" style="height: 60px;">
+			<a class="navbar-brand" href="#" style="color: white">SVP</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="nav navbar-nav navbar-right">
+					{% if app.user %}
+						<li>
+							<a class="nav-link" style="color: white" href="{{ path('app_entite') }}">View List</a>
+						</li>
+						<li>
+							<a class="nav-link" style="color: white" href="{{ path('app_logout') }}">Logout</a>
+						</li>
+					{% else %}
+						<li>
+							<a class="nav-link" style="color: white" href="{{ path('app_login') }}">Login</a>
+						</li>
+						<li>
+							<a class="nav-link" style="color: white" href="{{ path('registration') }}">Register</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Left Sidebar Menu -->
+		<div class="fixed-sidebar-left">
+			<ul class="nav navbar-nav side-nav nicescroll-bar">
+				<a href="#">Checkout</a>
+			</li>
+			#}
+		</ul>
+	</body>
+</html></li><li>
+<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
+	<i class="icon-doc mr-10"></i>Générer un document
+	<span class="pull-right">
+		<span class="label label-info mr-10"></span>
+		<i class="fa fa-fw fa-angle-down"></i>
+	</span>
+</a>
+<ul id="app_dr" class="collapse collapse-level-1">
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#contact_dr">Contrat<span class="pull-right">
+				<i class="fa fa-fw fa-angle-down"></i>
+			</span>
+		</a>
+		<ul id="contact_dr" class="collapse">
+			<li>
+				<a href="contact-list.html">prise de location</a>
+			</li>
+			<li>
+				<a href="contact-card.html">Achat</a>
+			</li>
+			<li>
+				<a href="contact-card.html">mise en loation</a>
+			</li>
+			<li>
+				<a href="contact-card.html">mise en vente</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="contact-card.html">etat des lieux entrer</a>
+	</li>
+	<li>
+		<a href="contact-card.html">etat des lieux sorti</a>
+	</li>
+	{# <li>
+																																<a href="contact-card.html">etat des lieux</a>
+																															</li> #}
+	<li>
+		<a href="contact-card.html">Préavis</a>
+	</li>
+	<li>
+		<a href="#" data-toggle="collapse" data-target="#form_dr">
+			<i class=" icon-flag mr-10"></i>Gérer transactions<span class="pull-right">
+				<i class="fa fa-fw fa-angle-down"></i>
+			</span>
+		</a>
+		<ul id="form_dr" class="collapse collapse-level-1">
+			<li>
+				<a href="form-element.html">
+					Demander un paiement</a>
+			</li>
+			<li>
+				<a href="form-element.html">
+					Renseigner un paiement</a>
+			</li>
+			<li>
+				<a href="form-element.html">Payer un proprietaire</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#table_dr">
+			<i class="icon-list mr-10"></i>
+			Messages
+			<span class="pull-right"></span>
+		</a>
+	</li>
+	<li>
+		<a href="todo-tasklist.html">To Do/Tasklist</a>
+	</li>
+	#}
+</ul></li><li>
+<a href="widgets.html">
+	<i class="icon-write mr-10"></i>Contrats</a></li><li>
+<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr">
+	<i class="icon-people mr-10"></i>Liste des Clients
+	<span class="pull-right">
+		<span class="label label-primary mr-10">7</span>
+		<i class="fa fa-fw fa-angle-down"></i>
+	</span>
+</a>
+<ul id="chart_dr" class="collapse collapse-level-1">
+	<li>
+		<a href="flot-chart.html">Locataires</a>
+	</li>
+	<li>
+		<a href="morris-chart.html">Propriétaires</a>
+	</li>
+	<li>
+		<a href="chart.js.html">Locatairs</a>
+	</li>
+</ul></li><li>
+<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr">
+	<i class="icon-user-follow mr-10"></i>Ajouter un client<span class="pull-right">
+		<i class="fa fa-fw fa-angle-down"></i>
+	</span>
+</a>
+<ul id="ui_dr" class="collapse collapse-level-1">
+	<li>
+		<a href="panels-wells.html">Proprietaire</a>
+	</li>
+	<li>
+		<a href="panels-wells.html">Locataire</a>
+	</li>
+	<li>
+		<a href="panels-wells.html">Acheteurs</a>
+	</li>
+</ul></li></ul></body></html></div><!-- /Left Sidebar Menu --><!-- Right Sidebar Menu --><div class="fixed-sidebar-right"><ul class="right-sidebar nicescroll-bar"><li><div class="tab-struct custom-tab-1"><ul role="tablist" class="nav nav-tabs" id="right_sidebar_tab">
+<li class="active" role="presentation">
+	<a aria-expanded="true" data-toggle="tab" role="tab" id="chat_tab_btn" href="#chat_tab">chat</a>
+</li>
+<li role="presentation" class="">
+	<a data-toggle="tab" id="messages_tab_btn" role="tab" href="#messages_tab" aria-expanded="false">messages</a>
+</li>
+<li role="presentation" class="">
+	<a data-toggle="tab" id="todo_tab_btn" role="tab" href="#todo_tab" aria-expanded="false">todo</a>
+</li></ul><div class="tab-content" id="right_sidebar_content">
+<div id="chat_tab" class="tab-pane fade active in" role="tabpanel">
+	<div class="chat-box-wrap">
+		<form role="search">
+			<div class="input-group mb-15">
+				<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
+				<span class="input-group-btn">
+					<button type="button" class="btn  btn-default">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+		</form>
+		<ul class="chat-list-wrap">
+			<li class="chat-list">
+				<div class="chat-body">
+					<a href="javascript:void(0)">
+						<div class="chat-data">
+							<img class="user-img img-circle" src="dist/img/user.png" alt="user"/>
+							<div class="user-data">
+								<span class="name block capitalize-font">ryan gosling</span>
+								<span class="time block txt-grey">2pm</span>
+							</div>
+							<div class="status away"></div>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+					<a href="javascript:void(0)">
+						<div class="chat-data">
+							<img class="user-img img-circle" src="dist/img/user1.png" alt="user"/>
+							<div class="user-data">
+								<span class="name block capitalize-font">ryan gosling</span>
+								<span class="time block txt-grey">1pm</span>
+							</div>
+							<div class="status offline"></div>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+					<a href="javascript:void(0)">
+						<div class="chat-data">
+							<img class="user-img img-circle" src="dist/img/user2.png" alt="user"/>
+							<div class="user-data">
+								<span class="name block capitalize-font">ryan gosling</span>
+								<span class="time block txt-grey">2pm</span>
+							</div>
+							<div class="status online"></div>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+					<a href="javascript:void(0)">
+						<div class="chat-data">
+							<img class="user-img img-circle" src="dist/img/user3.png" alt="user"/>
+							<div class="user-data">
+								<span class="name block capitalize-font">ryan gosling</span>
+								<span class="time block txt-grey">2pm</span>
+							</div>
+							<div class="status online"></div>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+					<a href="javascript:void(0)">
+						<div class="chat-data">
+							<img class="user-img img-circle" src="dist/img/user4.png" alt="user"/>
+							<div class="user-data">
+								<span class="name block capitalize-font">ryan gosling</span>
+								<span class="time block txt-grey">2pm</span>
+							</div>
+							<div class="status online"></div>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="messages_tab" class="tab-pane fade" role="tabpanel">
+	<div class="message-box-wrap">
+		<div class="streamline message-box">
+			<div class="sl-item">
+				<div class="sl-avatar avatar avatar-sm avatar-circle">
+					<img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
+				</div>
+				<div class="sl-content">
+					<a href="javascript:void(0)" class="inline-block capitalize-font  mb-5 pull-left">Sandy Doe</a>
+					<span class="inline-block font-12 mb-5 pull-right">12/10/16</span>
+					<div class="clearfix"></div>
+					<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+				</div>
+			</div>
+			<hr/>
+			<div class="sl-item">
+				<div class="sl-avatar avatar avatar-sm avatar-circle">
+					<img class="img-responsive img-circle" src="dist/img/user1.png" alt="avatar"/>
+				</div>
+				<div class="sl-content">
+					<a href="javascript:void(0)" class="inline-block capitalize-font  mb-5 pull-left">Sandy Doe</a>
+					<span class="inline-block font-12 mb-5 pull-right">2pm</span>
+					<div class="clearfix"></div>
+					<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+				</div>
+			</div>
+			<hr/>
+			<div class="sl-item">
+				<div class="sl-avatar avatar avatar-sm avatar-circle">
+					<img class="img-responsive img-circle" src="dist/img/user2.png" alt="avatar"/>
+				</div>
+				<div class="sl-content">
+					<a href="javascript:void(0)" class="inline-block capitalize-font  mb-5 pull-left">Sandy Doe</a>
+					<span class="inline-block font-12 mb-5 pull-right">1pm</span>
+					<div class="clearfix"></div>
+					<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+				</div>
+			</div>
+			<hr/>
+			<div class="sl-item">
+				<div class="sl-avatar avatar avatar-sm avatar-circle">
+					<img class="img-responsive img-circle" src="dist/img/user3.png" alt="avatar"/>
+				</div>
+				<div class="sl-content">
+					<a href="javascript:void(0)" class="inline-block capitalize-font  mb-5 pull-left">Sandy Doe</a>
+					<span class="inline-block font-12 mb-5 pull-right">1pm</span>
+					<div class="clearfix"></div>
+					<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+				</div>
+			</div>
+			<hr/>
+			<div class="sl-item">
+				<div class="sl-avatar avatar avatar-sm avatar-circle">
+					<img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
+				</div>
+				<div class="sl-content">
+					<a href="javascript:void(0)" class="inline-block capitalize-font  mb-5 pull-left">Sandy Doe</a>
+					<span class="inline-block font-12 mb-5 pull-right">1pm</span>
+					<div class="clearfix"></div>
+					<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="todo_tab" class="tab-pane fade" role="tabpanel">
+	<div
+		class="todo-box-wrap">
+		<!-- Todo-List -->
+		<ul class="todo-list">
+			<li class="todo-item">
+				<div class="checkbox checkbox-default">
+					<input type="checkbox" id="checkbox01"/>
+					<label for="checkbox01">Record The First Episode Of HTML Tutorial</label>
+				</div>
+			</li>
+			<li class="todo-item">
+				<div class="checkbox checkbox-pink">
+					<input type="checkbox" id="checkbox02"/>
+					<label for="checkbox02">Prepare The Conference Schedule</label>
+				</div>
+			</li>
+			<li class="todo-item">
+				<div class="checkbox checkbox-warning">
+					<input type="checkbox" id="checkbox03" checked/>
+					<label for="checkbox03">Decide The Live Discussion Time</label>
+				</div>
+			</li>
+			<li class="todo-item">
+				<div class="checkbox checkbox-success">
+					<input type="checkbox" id="checkbox04" checked/>
+					<label for="checkbox04">Prepare For The Next Project</label>
+				</div>
+			</li>
+			<li class="todo-item">
+				<div class="checkbox checkbox-danger">
+					<input type="checkbox" id="checkbox05" checked/>
+					<label for="checkbox05">Finish Up AngularJs Tutorial</label>
+				</div>
+			</li>
+			<li class="todo-item">
+				<div class="checkbox checkbox-purple">
+					<input type="checkbox" id="checkbox06" checked/>
+					<label for="checkbox06">Finish Infinity Project</label>
+				</div>
+			</li>
+		</ul>
+		<!-- /Todo-List -->
+	</div>
+</div></div></div></li></ul></div><!-- /Right Sidebar Menu --><!-- Main Content --><div class="page-wrapper"><div class="container-fluid"> {% block body %}{% endblock %}</div><!-- /Main Content --></div><!-- /#wrapper -->{% block javascripts %}<!-- jQuery --><script src="back-end/vendors/bower_components/jquery/dist/jquery.min.js"></script><!-- Bootstrap Core JavaScript --><script src="back-end/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script><!-- Data table JavaScript --><script src="back-end/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script><script src="back-end/dist/js/dataTables-data.js"></script><!-- Slimscroll JavaScript --><script src="back-end/dist/js/jquery.slimscroll.js"></script><!-- Fancy Dropdown JS --><script src="back-end/dist/js/dropdown-bootstrap-extended.js"></script><!-- Init JavaScript --><script src="back-end/dist/js/init.js"></script>{% endblock %}</body></html>

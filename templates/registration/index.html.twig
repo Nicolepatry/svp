@@ -1,0 +1,43 @@
+{% extends 'baseAuth.html.twig' %}
+
+{% block title %}Hello RegistrationController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+<div class="container">
+	<div class="example-wrapper ">
+		<h1 class="offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4">Inscription</h1>
+		<p class="offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4">Veuillez ajouter un Employer</p>
+	</div>
+
+	{{ form_start(form) }}
+
+	<div class="row offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+		{{ form_row(form.email, {'attr': {'placeholder': "Entrer votre mail"}}) }}
+	</div>
+	<div class="row offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+		{{ form_row(form.password, {'attr': {'placeholder': "Entrer votre mot de passe"}}) }}
+	</div>
+	<div class="row offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4 row col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+		{{ form_row(form.passwordConfirm, {'attr': {'placeholder': "confirmer votre mot de pasee"}}) }}
+	</div>
+
+<div class="row offset-lg-5 offset-md-5 offset-sm-5 offset-xs-5">
+	<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+	{{ form_end(form) }}
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{{ form_start(entiteformulaire) }}
+    {{ form_widget(entiteformulaire) }}
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+    <p class="back">
+    	<br>
+	    <a href="{{ path('app_entite') }}" class="backToList">
+	    	Liste des Entreprises
+	    </a>
+    </p>
+{{ form_end(entiteformulaire) }}

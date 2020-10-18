@@ -1,0 +1,56 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Entite index{% endblock %}
+
+{% block body %}
+    <h1 class="titleIndex">Liste des Succursale</h1>
+    <div class="buttonCreated" style="text-align: right;">
+        <button class="btn btn-outline-primary">
+           {# <a href="{{ path('') }}" title="" class="styleButtonCreated">
+                Créer un Succursale
+            </a>#}
+        </button>
+    <table class="table table-borderless table-striped table-bordered">
+            <thead class="table-primary">
+            <tr class="bg-info">
+                {# <th>Id</th> #}
+                <th>Nom </th>
+                <th>Numero RCM </th>
+                <th>Nombre de Succursale </th>
+                <th>Type d'Succursale</th>
+                <th>RaisonSociale</th>
+                <th>siege</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for succursale in succursales %}
+            <tr>
+                {# <td>{{ succursale.id }}</td> #}
+                <td>{{ succursale.Nom }}</td>
+                <td>{{ succursale.Numero }}</td>
+                <td>{{ succursale.NbreSuccursale }}</td>
+                <td>{{ succursale.Etatsuccursale}}</td>
+                <td>{{ succursale.RaisonSociale}}</td>
+                <td>{{ succursale.siege}}</td>
+                <td>
+                    <div class="btn-group btn-block">
+                        <button class="btn btn-outline-primary">
+                            <a href="{{ path('app_succursale_show', {'id': succursale.id}) }}" class="btn btn-success"> Voir </a>
+                        </button>
+                         <button class="btn btn-outline-primary">
+                            <a href="{{ path('app_succursale_edit', {'id': succursale.id}) }}" class="buttonAction"> Modifier </a>
+                        </button>
+                    </div>                  
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title  'Find all the best entite '%}
+
+{% block body %}
+
+<h1>Formulaire de modification d'succursale</h1>
+    
+    {{ form_start(formsuccussale) }}
+
+        {{ form_widget(formsuccussale) }}
+
+        <input type="submit" class="btn btn-success" value="Enregistrer Entreprise">
+
+    {{ form_end(formsuccussale) }}
+
+{% endblock %}
+
+
+

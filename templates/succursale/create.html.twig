@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title  'Find all the best succursale '%}
+
+{% block body %}
+
+<h1>Formulaire d'enregistrement d'succursale</h1>
+	
+	{{ form_start(succursaleformulaire) }}
+
+		{{ form_widget(succursaleformulaire) }}
+
+		<input type="submit" class="btn btn-success" value="Enregistrer succursale">
+
+	{{ form_end(succursaleformulaire) }}
+
+{% endblock %}

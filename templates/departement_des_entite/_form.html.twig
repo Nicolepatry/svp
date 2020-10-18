@@ -1,0 +1,11 @@
+{{ form_start(departementdesentiteformulaire) }}
+    {{ form_widget(departementdesentiteformulaire) }}
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+    <p class="back">
+    	<br>
+	    <a href="{{ path('app_departementdesentite') }}" class="backToList">
+	    	Liste des Departement des entite
+	    </a>
+    </p>
+{{ form_end(departementdesentiteformulaire) }}

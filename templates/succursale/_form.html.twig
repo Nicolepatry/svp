@@ -1,0 +1,11 @@
+{{ form_start(succursaleformulaire) }}
+    {{ form_widget(succursaleformulaire) }}
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+    <p class="back">
+    	<br>
+	    <a href="{{ path('app_succursale') }}" class="backToList">
+	    	Liste des Succursale
+	    </a>
+    </p>
+{{ form_end(succursaleformulaire) }}

@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Entite index{% endblock %}
+
+{% block body %}
+    <h1 class="titleIndex">Liste des Succursale</h1>
+    <div class="buttonCreated" style="text-align: right;">
+        <button class="btn btn-outline-primary">
+           <a href="{{ path('app_succursale_create') }}" title="" class="styleButtonCreated">
+                Créer un Succursale
+            </a>
+        </button>
+    <table class="table table-borderless table-striped table-bordered">
+            <thead class="table-primary">
+            <tr class="bg-info"> 
+                {# <th>Id</th> #}
+                <th>Nom du Succusale </th>
+                <th>Nombre employer </th>
+                <th>Quartier </th>
+                <th>Arrondissement</th>
+                <th>Ville</th>
+                <th>Id Entreprise</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for succursale in succursales %}
+            <tr>
+                {# <td>{{ succursale.id }}</td> #}
+                <td>{{ succursale.libellelibelle }}</td>
+                <td>{{ succursale.nbre_employer }}</td>
+                <td>{{ succursale.quartier }}</td>
+                <td>{{ succursale.arrondissement}}</td>
+                <td>{{ succursale.ville}}</td>
+                <td>{{ succursale.entite_id}}</td>
+                <td>  
+                            <a href="{{ path('app_succursale_show', {'id': succursale.id}) }}" class="btn-group btn-block btn btn-outline-primary btn btn-success"> Voir </a>               
+                </td>
+                 <td>
+                            <a href="{{ path('app_succursale_edit', {'id': succursale.id}) }}" class="btn-group btn-block btn btn-outline-primary buttonAction "> Modifier </a>                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

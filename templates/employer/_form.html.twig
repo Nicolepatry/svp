@@ -1,0 +1,11 @@
+{{ form_start(employerformulaire) }}
+    {{ form_widget(employerformulaire) }}
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+    <p class="back">
+    	<br>
+	    <a href="{{ path('app_employer') }}" class="backToList">
+	    	Liste des Entreprises
+	    </a>
+    </p>
+{{ form_end(employerformulaire) }}

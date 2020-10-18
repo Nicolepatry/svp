@@ -1,0 +1,66 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}employer index{% endblock %}
+
+{% block body %}
+    <h1 class="titleIndex">Liste des Employer</h1>
+    <div class="buttonCreated" style="text-align: right;">
+        <button class="btn btn-outline-primary">
+           {# <a href="{{ path('') }}" title="" class="styleButtonCreated">
+                Créer un Employer
+            </a>#}
+        </button>
+    <table class="table table-borderless table-striped table-bordered">
+            <thead class="table-primary">
+            <tr class="bg-info">
+                {# <th>Id</th> #}
+                <th>Matricule ou numero de declaration </th>
+                <th>Nom </th>
+                <th>Prenom </th>
+                <th>E-mail </th>
+                <th>Telephone</th>
+                <th>Arrondissement</th>
+                <th>Quartier</th>
+    n           <th>Ville </th>
+                <th>Adresse </th>
+                <th>E-mail </th>
+                <th>Poste</th>
+                <th>Postulant Election Syndical</th>
+                <th>Departement dans entite</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for employer in employer %}
+            <tr>
+                {# <td>{{ employer.id }}</td> #}
+                <td>{{ employer.identifiant }}</td>
+                <td>{{ employer.nom }}</td>
+                <td>{{ employer.prenom }}</td>
+                <td>{{ employer.email }}</td>
+                <td>{{ employer.tel}}</td>
+                <td>{{ employer.arrondissement}}</td>
+                <td>{{ employer.quartier}}</td>
+                <td>{{ employer.ville}}</td>
+                <td>{{ employer.adresse }}</td>
+                <td>{{ employer.date_de_naissance }}</td>
+                <td>{{ employer.poste}}</td>
+                <td>{{ employer.postulant}}</td>
+                <td>{{ employer.departement_des_entite}}</td>
+                <<td>  
+                            <a href="{{ path('app_employer_show', {'id': employer.id}) }}" class="btn-group btn-block btn btn-outline-primary btn btn-success"> Voir </a>               
+                </td>
+                 <td>
+                            <a href="{{ path('app_employer_edit', {'id': employer.id}) }}" class="btn-group btn-block btn btn-outline-primary buttonAction "> Modifier </a>                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

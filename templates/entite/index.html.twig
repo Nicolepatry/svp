@@ -1,0 +1,53 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Entite index{% endblock %}
+
+{% block body %}
+    <h1 class="titleIndex">Liste des Entreprise</h1>
+    <div class="buttonCreated" style="text-align: right;">
+        <button class="btn btn-outline-primary">
+            <a href="{{ path('app_entite_create') }}" title="" class="styleButtonCreated">
+                Créer un Entreprise
+            </a>
+        </button>
+    <table class="table table-borderless table-striped fl-table table-bordered fl-table">
+            <thead class="table-primary">
+            <tr class="bg-info">
+                {# <th>Id</th> #}
+                <th>Nom </th>
+                <th>Numero RCM </th>
+                <th>Nombre de Succursale </th>
+                <th>Type d'Entreprise</th>
+                <th>RaisonSociale</th>
+                <th>siege</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for entite in entites %}
+            <tr>
+                {# <td>{{ entite.id }}</td> #}
+                <td>{{ entite.Nom }}</td>
+                <td>{{ entite.Numero }}</td>
+                <td>{{ entite.NbreSuccursale }}</td>
+                <td>{{ entite.EtatEntite}}</td>
+                <td>{{ entite.RaisonSociale}}</td>
+                <td>{{ entite.siege}}</td>
+                <td>  
+                            <a href="{{ path('app_entite_show', {'id': entite.id}) }}" class="btn-group btn-block btn btn-outline-primary btn btn-success"> Voir </a>               
+                </td>
+                 <td>
+                            <a href="{{ path('app_entite_edit', {'id': entite.id}) }}" class="btn-group btn-block btn btn-outline-primary buttonAction "> Modifier </a>                
+                </td>
+            </tr>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title  'Find all the best entite '%}
+
+{% block body %}
+
+<h1>Formulaire de modification d'Employer</h1>
+	
+	{{ form_start(formemployer) }}
+
+		{{ form_widget(formemployer) }}
+
+		<input type="submit" class="btn btn-success" value="Enregistrer Entreprise">
+
+	{{ form_end(formemployer) }}
+
+{% endblock %}
+
+
+

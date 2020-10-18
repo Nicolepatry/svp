@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title  'Find all the best entite '%}
+  
+{% block body %}
+  <h1 class="titleShow">Departement des entite {{ nom }}</h1>
+
+   <p class="back">
+
+          <br>
+          <a href="{{ path('app_departementdesentite') }}" class="backToList">
+             Liste des Departement des entreprises
+          </a>
+       </p>
+
+  <table class="table table-borderless table-striped table-bordered">
+            <tbody class="table table-borderless table-striped table-bordered">
+              <tr>
+                  <th>
+                    ID
+                  </th>
+                  <td>
+                    {{id}}
+                  </td>
+              </tr>
+
+              <tr>
+                  <th>
+                    Chef departement
+                  </th>
+                  <td>
+                    {{ chfdep }}
+                  </td>
+              </tr>
+
+              <tr>
+                  <th>
+                    Succursale
+                  </th>
+                  <td>
+                    {{ succ}}
+                  </td>
+              </tr>
+
+            </tbody>
+        </table>
+
+       <div class="btn-group btn-block">
+            <button class="btn btn-outline-primary">
+                 <a href="{{ path('app_departementdesentite_edit', {'id': id}) }}" class="styleButtonModifier">
+                     Modifier
+                 </a>
+            </button>
+        
+                <form method="post" action="{{ path('app_departementdesentitedelete', {'id': id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hissdden" name="_token" value="{{ csrf_token('delete' ~ id) }}">
+                    <button class="btn btn-outline-danger buttonNote btn-lg">
+                      Supprimer
+                    </button>
+                </form>
+
+       </div>
+
+       <br>
+
+      
+
+
+        <div class="btn-group btn-block">
+            <button class="btn btn-outline-primary">
+                  <a class="collapse-item styleButtonModifier" href="{{path('app_employer')}}"> Gérer Employer</a>
+            </button>
+       </div>
+                    
+    
+{% endblock %}

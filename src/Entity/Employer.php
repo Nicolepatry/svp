@@ -237,9 +237,9 @@ class Employer
         return $this->identifiant;
     }
 
-    public function setIdentifiant(string $Identifiant): self
+    public function setIdentifiant(string $identifiant): self
     {
-        $this->Identifiant = $identifiant;
+        $this->identifiant = $identifiant;
 
         return $this;
     }

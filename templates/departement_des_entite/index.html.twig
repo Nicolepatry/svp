@@ -4,7 +4,7 @@
 {% block title %}Entite index{% endblock %}
 
 {% block body %}
-    <h1 class="titleIndex">Liste des Succursale</h1>
+    <h1 class="titleIndex">Listes des Departement des entites</h1>
     <div class="buttonCreated" style="text-align: right;">
         <button class="btn btn-outline-primary">
            {# <a href="{{ path('') }}" title="" class="styleButtonCreated">
@@ -15,24 +15,20 @@
             <thead class="table-primary">
             <tr class="bg-info">
                 {# <th>Id</th> #}
-                <th>Nom </th>
-                <th>Numero RCM </th>
-                <th>Nombre de Succursale </th>
-                <th>Type d'Succursale</th>
-                <th>RaisonSociale</th>
-                <th>siege</th>
+                <th>Nom deu departement </th>
+                <th>Nombre d'employer' </th>
+                {#<th>Nom du chef de departement</th>#}
+                <th>Succursale</th>
             </tr>
         </thead>
         <tbody >
-        {% for succursale in succursales %}
+        {% for d in departementdesentite %}
             <tr>
                 {# <td>{{ succursale.id }}</td> #}
-                <td>{{ succursale.Nom }}</td>
-                <td>{{ succursale.Numero }}</td>
-                <td>{{ succursale.NbreSuccursale }}</td>
-                <td>{{ succursale.Etatsuccursale}}</td>
-                <td>{{ succursale.RaisonSociale}}</td>
-                <td>{{ succursale.siege}}</td>
+                <td>{{ d.libelle }}</td>
+                <td>{{ d.NbreEmployer}}</td>
+                {#<td>{{ d.chefdep }}</td>#}
+                <td>{{ d.succursale }}</td>
                 <td>
                     <div class="btn-group btn-block">
                         <button class="btn btn-outline-primary">

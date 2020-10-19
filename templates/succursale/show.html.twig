@@ -101,26 +101,24 @@
             
             <table class="table table-borderless table-striped fl-table table-bordered fl-table">
               <thead class="table-primary">
-              <tr class="bg-info">
-                  {# <th>Id</th> #}
-                  <th>Nom Departement </th>
-                  <th>Quartier </th>
-                  <th>Nombre d'employés </th>
-                  <th>Arrondissement </th>
-                  <th>Ville </th>
-                  <th>chef Departement </th>
-              </tr>
-          </thead>
-          <tbody >
-          {% for d in departements %}
-              <tr>
-                  <td>{{ d.libelle }}</td>
-                  <td>{{ d.quartier }}</td>
-                  <td>{{ d.NbreEmployer }}</td>
-                  <td>{{ d.arrondissement }}</td>
-                  <td>{{ d.ville }}</td>
-                  <td>{{ d.chefdep }}</td>
-                  <td>  
+              <thead class="table-primary">
+            <tr class="bg-info">
+                {# <th>Id</th> #}
+                <th>Nom deu departement </th>
+                <th>Nombre d'employer' </th>
+                {#<th>Nom du chef de departement</th>#}
+                <th>Succursale</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for d in departements %}
+            <tr>
+                {# <td>{{ succursale.id }}</td> #}
+                <td>{{ d.libelle }}</td>
+                <td>{{ d.NbreEmployer}}</td>
+                {#<td>{{ d.chefdep }}</td>#}
+                <td>{{ d.succursale }}</td>
+                <td>
                             <a href="{{ path('app_succursale_show', {'id': s.id}) }}" class="btn-group btn-block btn btn-outline-primary btn btn-success"> Voir </a>               
                 </td>
               </tr>

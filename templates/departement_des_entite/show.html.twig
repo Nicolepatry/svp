@@ -3,7 +3,7 @@
 {% block title  'Find all the best entite '%}
   
 {% block body %}
-  <h1 class="titleShow">Departement des entite {{ nom }}</h1>
+  <h1 class="titleShow">{{ identit.nom }} - Succursale {{ identitsuccnom }} Departement  {{ nom }}</h1>
 
    <p class="back">
 
@@ -17,21 +17,22 @@
             <tbody class="table table-borderless table-striped table-bordered">
               <tr>
                   <th>
-                    ID
+                    Nom du departement
                   </th>
                   <td>
-                    {{id}}
+                    {{libelle}}
                   </td>
               </tr>
 
               <tr>
                   <th>
-                    Chef departement
+                  Nombre d'employer
                   </th>
                   <td>
-                    {{ chfdep }}
+                    {{ nbre_employer }}
                   </td>
               </tr>
+
 
               <tr>
                   <th>
@@ -39,6 +40,16 @@
                   </th>
                   <td>
                     {{ succ}}
+                  </td>
+              </tr>
+
+
+              <tr>
+                  <th>
+                    Nom du chef de departement
+                  </th>
+                  <td>
+                    {{ chfdep }}
                   </td>
               </tr>
 
@@ -61,17 +72,69 @@
                 </form>
 
        </div>
+                  
+                   </form>
+                <a href="{{ path('app_employer_create', {'id_departement' :id})}}" class="btn btn-outline-primary buttonNote btn-lg">
+                     Enregistrer employer
+                 </a>
 
-       <br>
-
-      
-
-
-        <div class="btn-group btn-block">
-            <button class="btn btn-outline-primary">
-                  <a class="collapse-item styleButtonModifier" href="{{path('app_employer')}}"> Gérer Employer</a>
-            </button>
        </div>
-                    
-    
+
+       
+          </tbody>
+      </table>
+       </div>
+
+       <div class="btn-group btn-block">
+            
+            <table class="table table-borderless table-striped fl-table table-bordered fl-table">
+              <thead class="table-primary">
+              <tr class="bg-info">
+                  {# <th>Id</th> #}
+                   <th>Matricule ou numero de declaration </th>
+                   <th>Nom </th>
+                   <th>Prenom </th>
+                   <th>E-mail </th>
+                   <th>Telephone</th>
+                   <th>Arrondissement</th>
+                   <th>Quartier</th>
+                   <th>Ville </th>
+                   <th>Adresse </th>
+                   <th>E-mail </th>
+                   <th>Poste</th>
+                   <th>Postulant Election Syndical</th>
+                   <th>Departement dans entite</th>
+              </tr>
+          </thead>
+          <tbody >
+
+          {% for e in employers %}
+            <tr>
+                {# <td>{{ employer.id }}</td> #}
+                <td>{{ e.identifiant }}</td>
+                <td>{{ e.nom }}</td>
+                <td>{{ e.prenom }}</td>
+                <td>{{ e.email }}</td>
+                <td>{{ e.tel}}</td>
+                <td>{{ e.arrondissement}}</td>
+                <td>{{ e.quartier}}</td>
+                <td>{{ e.ville}}</td>
+                <td>{{ e.adresse }}</td>
+                <td>{{ e.date_de_naissance }}</td>
+                <td>{{ e.poste}}</td>
+                <td>{{ e.postulant}}</td>
+                <td>{{ e.departement_des_entite}}</td>
+                <<td>  
+                            <a href="{{ path('app_employer_show', {'id': e.id}) }}" class="btn-group btn-block btn btn-outline-primary btn btn-success"> Voir </a>               
+                </td>
+              </tr>
+          {% else %}
+              <tr>
+                  <td colspan="3">Aucun enregistrement trouvé</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+       </div>
+                         
 {% endblock %}

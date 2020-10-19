@@ -19,51 +19,90 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\DepartementDesEntiteType;
 
+
+use App\Entity\Employer;
+use App\Repository\EmployerRepository;
+use App\Form\EmployerType;
+
+
 class DepartementDesEntiteController extends AbstractController
 {
    
     /**
      * @Route("/departementdesentite", name="app_departementdesentite" ,methods="GET" )
      */
+
     public function index(DepartementDesEntiteRepository $departementdesentiteRepository): Response
     {
         $departementdesentite = $departementdesentiteRepository->findAll();
+
         return $this->render('departement_des_entite/index.html.twig', compact('departementdesentite'));
     }
-
 
     /**
      * @Route("/departementdesentite/create/{id_succursale}", name="app_departementdesentite_create")
      */
-    public function create(Request $request, SuccursaleRepository $succursaleRepository, EntityManagerInterface $em):Response
+    public function create(Request $request, SuccursaleRepository $succursaleRepository, EntityManagerInterface $em, DepartementDesEntiteRepository $departementdesentiteRepository):Response
     {
         $id_succursale = $request ->get('id_succursale') ;
 
 
-    	$formdepartementdesentite = $this->createFormBuilder()
+    	$formdepartementdesentiteemployer = $this->createFormBuilder()
     		 ->add('libelle', TextType::class, ['label' => 'Nom du Succusale'])
     		 ->add('nbre_employer', NumberType::class, ['label' => 'Nombre employer'])
-    		 ->getForm()
-    	;
 
-    	$formdepartementdesentite->handleRequest($request);
+            
+            ->add('nom',TextType::class, ['label' => 'Nom '])
+            ->add('prenom',TextType::class, ['label' => 'Prenom '])
+            ->add('email',EmailType::class, ['label' => 'E-mail '])
+            ->add('tel',TelType::class, ['label' => 'Telephone '])
+            ->add('arrondissement',TextType::class, ['label' => 'Arrondissement '])
+            ->add('quartier',TextType::class, ['label' => 'Quartier '])
+            ->add('ville',TextType::class, ['label' => 'Ville '])
+            ->add('adresse',TextType::class, ['label' => 'Adresse '])
+            ->add('date_de_naissance',DateType::class, ['label' => 'Date de Naissance '])
+            ->add('postulant',TextType::class, ['label' => 'Postulant Election Syndical'])
+            ->add('identifiant',TextType::class, ['label' => 'Matricule ou Numero de declaration  '])
+            ->getForm()
+        ;
 
-    	if($formdepartementdesentite->isSubmitted() && $formdepartementdesentite->isValid()){
+    	$formdepartementdesentiteemployer->handleRequest($request);
 
-    			$data = $formdepartementdesentite->getData();
+    	if($formdepartementdesentiteemployer->isSubmitted() && $formdepartementdesentiteemployer->isValid()){
+
+    			$data = $formdepartementdesentiteemployer->getData();
     			$departementdesentite =new DepartementDesEntite;
+                $departementdesentite ->setChefdep(1);
     			$departementdesentite ->setLibelle($data['libelle']);
     			$departementdesentite ->setNbreEmployer($data['nbre_employer']);
-    			$departementdesentite ->setsuccursale($succursaleRepository->findOneById($id_succursale)); 
+    			$departementdesentite ->setsuccursale($succursaleRepository->findOneById($id_succursale));
+                $em->persist($departementdesentite);
+                $em->flush();
+                $id_departement = $departementdesentite ->getId();
+                $employer =new Employer;
+                
+                $employer ->setNom($data['nom']);
+                $employer ->setPrenom($data['prenom']);
+                $employer ->setEmail($data['email']);
+                $employer ->setTel($data['tel']);
+                $employer ->setArrondissement($data['arrondissement']);
+                $employer ->setQuartier($data['quartier']); 
+                $employer ->setVille($data['ville']);
+                $employer ->setAdresse($data['adresse']);
+                $employer ->setDateDeNaissance($data['date_de_naissance']); 
+                $employer ->setPoste('Chef departement'.' '.$data['libelle']);
+                $employer ->setPostulant($data['postulant']);
+                $employer ->setIdentifiant($data['identifiant']);
+                $employer ->setDepartementDesEntite($departementdesentiteRepository->findOneById($id_departement)); 
     			$em->persist($departementdesentite);
+                $em->persist($employer);
     			$em->flush();
 
     			return $this->redirectToRoute('app_departementdesentite');
     	}
         
         return $this->render('departement_des_entite/create.html.twig',[
-        	'departementdesentiteformulaire'=> $formdepartementdesentite ->createView()
-        ]);
+        	'departementdesentiteformulaire'=> $formdepartementdesentiteemployer ->createView()]);
     }  
 
     /**
@@ -98,8 +137,9 @@ class DepartementDesEntiteController extends AbstractController
         $id = $departementdesentite ->getId();
         $chfdep  = $departementdesentite ->getNom();
         $succ = $departementdesentite ->getNumero();
+        $employers = $this->employerdepartement($request, $employerRepository, $id);
         
-        return $this->render('departementdesentite/show.html.twig', compact('id', 'chfdep', 'succ'));
+        return $this->render('departementdesentite/show.html.twig', compact('id', 'chfdep', 'succ','employers '));
     } 
 
 
@@ -116,6 +156,15 @@ class DepartementDesEntiteController extends AbstractController
 
         return $this->redirectToRoute('app_departementdesentite');
     }
+
+    public function employerdepartement(Request $request, EmployerRepository $employerRepository, string $id_departement): array
+    {
+        
+        $employers = $employerRepository ->findByEntite($id_departement);
+
+        return $employers;
+    }
+
 
       
    /* public function chefdep(Request $request): Response

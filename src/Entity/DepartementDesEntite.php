@@ -19,6 +19,7 @@ class DepartementDesEntite
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\Column(nullable=true)
      */
     private $chefdep;
 
@@ -45,18 +46,7 @@ class DepartementDesEntite
         return $this->id;
     }
 
-    public function getChefdep(): ?int
-    {
-        return $this->chefdep;
-    }
-
-    public function setChefdep(int $chefdep): self
-    {
-        $this->chefdep = $chefdep;
-
-        return $this;
-    }
-
+    
     public function getSuccursale(): ?succursale
     {
         return $this->succursale;
@@ -93,4 +83,15 @@ class DepartementDesEntite
         return $this;
     }
 
+    public function getChefdep(): ?int
+    {
+        return $this->chefdep;
+    }
+
+    public function setChefdep(int $chefdep): self
+    {
+        $this->chefdep = $chefdep;
+
+        return $this;
+    }
 }

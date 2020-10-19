@@ -111,7 +111,7 @@ class SuccursaleController extends AbstractController
 
         $departements = $this->departsuccursale($request, $depRepository, $id);
         
-        return $this->render('succursale/show.html.twig', compact('id','nom','nbrempl','quartier','arron','ville','identit'    , 'departements' ));
+        return $this->render('succursale/show.html.twig', compact('id','nom','nbrempl','quartier','arron','ville','identit', 'departements' ));
     } 
 
     

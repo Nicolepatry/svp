@@ -19,6 +19,19 @@ class EmployerRepository extends ServiceEntityRepository
         parent::__construct($registry, Employer::class);
     }
 
+
+
+    public function findByEntite($id_departement)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.departement = :val')
+            ->setParameter('val', $id_departement)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Employer[] Returns an array of Employer objects
     //  */

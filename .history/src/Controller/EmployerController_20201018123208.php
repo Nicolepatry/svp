@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Employer;
 use App\Repository\EmployerRepository;
-use App\Repository\DepartementDesEntiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,12 +31,10 @@ class EmployerController extends AbstractController
     }
     
     /**
-     * @Route("/employer/create/{id_departement}", name="app_employer_create",methods={"GET","POST"})
+     * @Route("/chefdepcreate", name="app_chefdepcreate",methods={"GET","POST"})
      */
-    public function create(Request $request, EntityManagerInterface $em,DepartementDesEntiteRepository $departementdesentiteRepository ):Response
+    public function create(Request $request, EntityManagerInterface $em):Response
     {
-        $id_departement = $request ->get('id_departement') ;
-
     	$formemployer = $this->createFormBuilder()
             ->add('identifiant',TextType::class, ['label' => 'Matricule ou Numero de declaration  '])
     		->add('nom',TextType::class, ['label' => 'Nom '])
@@ -49,7 +46,7 @@ class EmployerController extends AbstractController
             ->add('ville',TextType::class, ['label' => 'Ville '])
             ->add('adresse',TextType::class, ['label' => 'Adresse '])
             ->add('date_de_naissance',DateType::class, ['label' => 'Date de Naissance '])
-            ->add('postulant',TextType::class, ['label' => 'Postulant Election Syndical'])
+            ->add('postulant',ChoiceType::class, ['label' => 'Postulant Election Syndical'])
     		 ->getForm()
     	;
 
@@ -71,7 +68,57 @@ class EmployerController extends AbstractController
     			$employer ->setDateDeNaissance($data['date_de_naissance']); 
     			$employer ->setPoste($data['poste']);
     			$employer ->setPostulant($data['postulant']);
-                $employer ->setDepartementDesEntite($departementdesentiteRepository->findOneById($id_departement)); 
+    			$employer ->setDepartementDesEntite($data['departement_des_entite']); 
+    			$em->persist($employer);
+    			$em->flush();
+
+    			return $this->redirectToRoute('app_employer');
+    	}
+        
+        return $this->render('employer/create.html.twig',[
+        	'employerformulaire'=> $formemployer ->createView()
+        ]);
+    }  
+
+    /**
+     * @Route("/employer/create", name="app_employer_create",methods={"GET","POST"})
+     */
+    public function create(Request $request, EntityManagerInterface $em):Response
+    {
+    	$formemployer = $this->createFormBuilder()
+            ->add('identifiant',TextType::class, ['label' => 'Matricule ou Numero de declaration  '])
+    		->add('nom',TextType::class, ['label' => 'Nom '])
+            ->add('prenom',TextType::class, ['label' => 'Prenom '])
+            ->add('email',EmailType::class, ['label' => 'E-mail '])
+            ->add('tel',TelType::class, ['label' => 'Telephone '])
+            ->add('arrondissement',TextType::class, ['label' => 'Arrondissement '])
+            ->add('quartier',TextType::class, ['label' => 'Quartier '])
+            ->add('ville',TextType::class, ['label' => 'Ville '])
+            ->add('adresse',TextType::class, ['label' => 'Adresse '])
+            ->add('date_de_naissance',DateType::class, ['label' => 'Date de Naissance '])
+            ->add('postulant',ChoiceType::class, ['label' => 'Postulant Election Syndical'])
+    		 ->getForm()
+    	;
+
+    	$formemployer->handleRequest($request);
+
+    	if($formemployer->isSubmitted() && $formemployer->isValid()){
+
+    			$data = $formemployer->getData();
+    			$employer =new Employer;
+                $employer ->setIdentifiant($data['identifiant']);
+    			$employer ->setNom($data['nom']);
+    			$employer ->setPrenom($data['prenom']);
+    			$employer ->setEmail($data['email']);
+    			$employer ->setTel($data['tel']);
+    			$employer ->setArrondissement($data['arrondissement']);
+    			$employer ->setQuartier($data['quartier']); 
+    			$employer ->setVille($data['ville']);
+    			$employer ->setAdresse($data['adresse']);
+    			$employer ->setDateDeNaissance($data['date_de_naissance']); 
+    			$employer ->setPoste($data['poste']);
+    			$employer ->setPostulant($data['postulant']);
+    			$employer ->setDepartementDesEntite($data['departement_des_entite']); 
     			$em->persist($employer);
     			$em->flush();
 
@@ -114,7 +161,7 @@ class EmployerController extends AbstractController
     public function show(EmployerRepository $employerRepository, Employer $employer):Response
     {
        $employer =new Employer;
-                    $identifiant =$employer ->getIdentifiant();
+                    $Midentifiant =$employer ->getIdentifiant();
                     $nom =$employer ->getNom();
                     $prenom =$employer ->getPrenom();
                     $mail =$employer ->getEmail();

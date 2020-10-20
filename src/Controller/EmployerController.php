@@ -18,7 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\EmployerType;
-
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Entity\User;
+use App\Form\UserType;
 
 class EmployerController extends AbstractController
 {
@@ -30,7 +32,86 @@ class EmployerController extends AbstractController
         $employer = $employerRepository->findAll();
         return $this->render('employer/index.html.twig', compact('employer'));
     }
+
+
+    /**
+     * @Route("/upload-excel", name="xlsx")
+     * @param Request $request
+     * @throws \Exception
+     */
+   /* public function xslx(Request $request)
+    {
+        $file = $this->createFormBuilder()
+            ->add('file',TextType::class, ['label' => 'selectionner le fichier excel  '])
+
+            $role = self::getUser()->getRoles()[0];
+             if(explode(" ", $role)[0] == 'ROLE_ADMIN'){
+                        $file = $request->files->get('file'); // récupère le fichier de la requête envoyée
+                       
+                       $fileFolder = __DIR__ . '/../../public/uploads/';  // choisissez le dossier dans lequel le fichier téléchargé sera stocké
+                      
+                       $filePathName = md5(uniqid()) . $file->getClientOriginalName();
+                          // appliquer la fonction md5 pour générer un identifiant unique pour le fichier et le concaténer avec l'extension de fichier 
+                        try {
+                            $file->move($fileFolder, $filePathName);
+                        } catch (FileException $e) {
+                            dd($e);
+                }
+        $spreadsheet = IOFactory::load($fileFolder . $filePathName); // Here we are able to read from the excel file 
+        $row = $spreadsheet->getActiveSheet()->removeRow(1); // I added this to be able to remove the first file line 
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true); // here, the read data is turned into an array
     
+     // dd($sheetData);
+        $entityManager = $this->getDoctrine()->getManager(); 
+        foreach ($sheetData as $Row) 
+            { 
+
+                $identifiant = $Row['A']; // stocker le identifiant à chaque itération
+                $nom = $Row['B'];
+                $prenom = $Row['C'];
+                $email= $Row['D'];     
+                $tel = $Row['E'];     
+                $arrondissement = $Row['F'];
+                $quartier= $Row['G'];     
+                $ville = $Row['H'];
+                $adresse = $Row['I'];
+                $date_de_naissance = $Row['J'];
+                $poste = $Row['K'];
+                $postulant = $Row['L'];   
+
+                $user_existant = $entityManager->getRepository(User::class)->findOneBy(array('email' => $email)); 
+                    // controle l'utilisateur n'existe pas déjà dans votre base de données
+                if (!$user_existant) 
+                 {  
+
+                    $employer =new Employer;
+                    $employer ->setIdentifiant($identifiant);
+                    $employer ->setNom($nom);
+                    $employer ->setPrenom($prenom);
+                    $employer ->setEmail($email);
+                    $employer ->setTel($tel);
+                    $employer ->setArrondissement($arrondissement);
+                    $employer ->setQuartier($quartier); 
+                    $employer ->setVille($ville);
+                    $employer ->setAdresse($adresse);
+                    $employer ->setDateDeNaissance($date_de_naissance); 
+                    $employer ->setPoste($poste);
+                    $employer ->setPostulant($postulant);
+
+                    $entityManager->persist($employer);
+                    $entityManager->flush(); 
+                     // ici Doctrine vérifie tous les champs de toutes les données récupérées et effectue une transaction dans la base de données.
+                 } 
+            } 
+
+             return $this->json('users registered', 200); 
+             return $this->redirectToRoute('app_employer');
+
+       }
+        return $this->json('not Admin', 400);
+
+    }  */  
+                
     /**
      * @Route("/employer/create/{id_departement}", name="app_employer_create",methods={"GET","POST"})
      */

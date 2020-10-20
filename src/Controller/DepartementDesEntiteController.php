@@ -42,9 +42,10 @@ class DepartementDesEntiteController extends AbstractController
     /**
      * @Route("/departementdesentite/create/{id_succursale}", name="app_departementdesentite_create")
      */
-    public function create(Request $request, SuccursaleRepository $succursaleRepository, EntityManagerInterface $em, DepartementDesEntiteRepository $departementdesentiteRepository):Response
+    public function create(Request $request, SuccursaleRepository $succursaleRepository, EntityManagerInterface $em, DepartementDesEntiteRepository $departementdesentiteRepository,EmployerRepository $employerRepository):Response
     {
         $id_succursale = $request ->get('id_succursale') ;
+
 
 
     	$formdepartementdesentiteemployer = $this->createFormBuilder()
@@ -71,15 +72,22 @@ class DepartementDesEntiteController extends AbstractController
     	if($formdepartementdesentiteemployer->isSubmitted() && $formdepartementdesentiteemployer->isValid()){
 
     			$data = $formdepartementdesentiteemployer->getData();
+
     			$departementdesentite =new DepartementDesEntite;
-                $departementdesentite ->setChefdep(1);
+
+                $employer =new Employer;
+
+                  $id_employer = $request ->get('id') ;
+               
+
+                $departementdesentite ->setChefdep( $employerRepository->findOneById($id_employer));
     			$departementdesentite ->setLibelle($data['libelle']);
     			$departementdesentite ->setNbreEmployer($data['nbre_employer']);
     			$departementdesentite ->setsuccursale($succursaleRepository->findOneById($id_succursale));
                 $em->persist($departementdesentite);
                 $em->flush();
                 $id_departement = $departementdesentite ->getId();
-                $employer =new Employer;
+                
                 
                 $employer ->setNom($data['nom']);
                 $employer ->setPrenom($data['prenom']);

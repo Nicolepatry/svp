@@ -1,17 +1,34 @@
 {% extends 'base.html.twig' %}
+{#% extends 'admin-base.html.twig' %#}
 
 {% block title  'Find all the best entite '%}
 
 {% block body %}
+	<div class="panel panel-default card-view">
+								<div class="panel-heading">
+									<div class="pull-left">
+										<h6 class="panel-title txt-dark">Formulaire d'enregistrement des departements des entite</h6>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<div class="form-wrap">
+													{{ form_start(departementdesentiteformulaire) }}
 
-<h1>Formulaire d'enregistrement des departements des entite</h1>
-	
-	{{ form_start(departementdesentiteformulaire) }}
+														{{ form_widget(departementdesentiteformulaire) }}
+														<div class="form-group mb-0">														
+															<input type="submit" class="btn btn-success mr-10" value="Enregistrer departement">
+														</div>
 
-		{{ form_widget(departementdesentiteformulaire) }}
-
-		<input type="submit" class="btn btn-success" value="Enregistrer departement">
-
-	{{ form_end(departementdesentiteformulaire) }}
-
+													{{ form_end(departementdesentiteformulaire) }}
+												</div>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 {% endblock %}

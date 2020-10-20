@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+        {#% block stylesheets %}
                     <!-- Latest compiled and minified CSS -->
 {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> #}
 
@@ -16,11 +16,31 @@
 
 <!-- Latest compiled JavaScript -->
 {# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> #}
-            {{ encore_entry_link_tags('app') }}
+            {#{ encore_entry_link_tags('app') }}
             {{ encore_entry_link_tags('app_css') }}
 
             {# <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css"> #}
-        {% endblock %}
+    
+        {% block stylesheets %}
+
+      <link rel="shortcut icon" href="favicon.ico">
+      <link
+      rel="icon" href="back-end/favicon.ico" type="image/x-icon">
+
+      <!-- Data table CSS -->
+      {{ encore_entry_link_tags('app') }}
+      <link
+      href="back-end/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+      <!-- Custom CSS -->
+      <link href="back-end/dist/css/style.css" rel="stylesheet" type="text/css">
+
+      <link href="back-end/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+
+
+      <link href="back-end/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    {% endblock %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -34,99 +54,6 @@
           <!-- Page Wrapper -->
           <div id="wrapper">
 
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-              <!-- Sidebar - Brand -->
-              <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                  <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SVP</div>
-              </a>
-
-              <!-- Divider -->
-              <hr class="sidebar-divider my-0">
-
-              <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
-                <h4><a class="nav-link" href="{#{path('note_new')}#}">
-                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                  <span> Menu </span></a></h4>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                 <h4> <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    {# Gérer entreprise #}
-                    <span> Entreprise </span> 
-                  </a></h4>
-                  <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                      <a class="collapse-item" href="{{path('app_entite')}}"> Gérer Entreprise </a>
-
-                    </div>
-                  </div>
-                </li>
-
-                
-
-                <li class="nav-item">
-                <h4>  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePag" aria-expanded="true" aria-controls="collapsePag">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Profil</span>
-                  </a></h4>
-                  <div id="collapsePag" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                      <a class="collapse-item" href="{#{ path('note_new') }#}"> Profil</a>
-                      <a class="collapse-item" href="{#{ path('app_logout') }#}">Déconnexion</a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
-              </ul>
-              <!-- End of Sidebar -->
-
-              <!-- Content Wrapper -->
-              <div id="content-wrapper" class="d-flex flex-column">
-
-                <!-- Main Content -->
-                <div id="content">
-
-                  <!-- Topbar -->
-                  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Topbar Search -->
-                    {# <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                      <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </form> #}
-                    <!-- Topbar Navbar -->
-                  </nav>
                   <!-- End of Topbar -->
 
 
